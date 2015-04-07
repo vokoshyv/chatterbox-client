@@ -7,6 +7,7 @@
 
     <!-- dependencies -->
     <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <!-- your scripts -->
     <script src="env/config.js"></script>
     <script src="scripts/app.js"></script>
@@ -15,6 +16,27 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
+      <div id="center" class="column">
+        <h2>New Messages</h3>
+        <div class="messageContainer">
+          <a class="message"></a>
+        </div>
+      </div>
     </div>
+    <div>
+      <input type="text" name="messageInput">
+      <br>
+      <input type="submit" value="Submit">
+    </div>
+
+
+
+    <script>
+      var test = $(".messageInput").val();
+      console.log(test);
+      var thisApp = new App();
+      var username = window.prompt("username","")
+      thisApp.init(username);
+    </script>
   </body>
 </html>
