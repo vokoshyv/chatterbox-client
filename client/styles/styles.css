@@ -90,3 +90,7 @@ form input[type=text] {
 .person{
     display:block;
 }
+
+.friend{
+    font-weight: bold;
+}

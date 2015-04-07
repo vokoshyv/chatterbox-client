@@ -57,10 +57,18 @@ App.prototype.displayMessages = function(){
   $(".message").remove();
   for(var key in this.messages){
     if(this.messages[key].roomname === this.roomname){
-      $(".messageContainer").append('<a class=\"message\"> From:'+this.messages[key].username+'<br />'
-        +'@: '+this.messages[key].updatedAt+'<br />'
-        +this.messages[key].text+'</a>');
-      //apply bold css property for friend messages
+      if(this.people[this.messages[key].username]){
+        console.log('friend message');
+
+        $(".messageContainer").append('<a class=\"message friend\"> From:'+this.messages[key].username+'<br />'
+          +'@: '+this.messages[key].updatedAt+'<br />'
+          +this.messages[key].text+'</a>');
+      }
+      else{
+        $(".messageContainer").append('<a class=\"message\"> From:'+this.messages[key].username+'<br />'
+          +'@: '+this.messages[key].updatedAt+'<br />'
+          +this.messages[key].text+'</a>');
+      }
     }
   }
 }
@@ -143,9 +151,10 @@ App.prototype.displayPeople = function(){
   var instance = this;
   $(".person").remove();
   for(var key in this.people){
-    var newperson=$("#peopleContainer").append('<button class=\"person\">' + key + '</button>');
-    if(this.people[key]){
-      newperson.attr('class', 'person friend');
+    if(!this.people[key]){
+      $("#peopleContainer").append('<button class=\"person\">' + key + '</button>');
+    }else{
+      $("#peopleContainer").append('<button class=\"person friend\">' + key + '</button>');
     }
   }
  $(".person").click(function() {
@@ -154,7 +163,6 @@ App.prototype.displayPeople = function(){
 }
 
 App.prototype.makeFriend = function(friend){
-  console.log(this.people[friend],friend);
   if(this.people[friend] !== undefined){
     this.people[friend] = true;
   }
